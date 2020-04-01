@@ -1,15 +1,6 @@
-/*
-    1. Fragment占位符
-      其实是个组件
-    2. 定义数据
-    3. Immutable state不能直接改 使用setState
-    4. 父子传值
-    5. 单向数据流 子组件无法修改
-    6. 视图层框架
-    7. 函数式编程
-*/
-import React, { Component, Fragment } from 'react'; 
+import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
+// import Test from './Test';
 import './style.css';
 
 class TodoList extends Component {
@@ -31,6 +22,9 @@ class TodoList extends Component {
         <div>
           <label htmlFor="insertArea">输入：</label>
           <input
+            ref={input => {
+              this.input = input;
+            }}
             id="insertArea"
             className="input"
             value={this.state.inputValue}
@@ -38,7 +32,14 @@ class TodoList extends Component {
           />
           <button onClick={this.handleButtonClick}>提交</button>
         </div>
-        <ul>{this.getTodoItem()}</ul>
+        <ul
+          ref={ul => {
+            this.ul = ul;
+          }}
+        >
+          {this.getTodoItem()}
+        </ul>
+        {/* <Test content={this.state.inputValue}/> */}
       </Fragment>
     );
   }
@@ -62,17 +63,23 @@ class TodoList extends Component {
     });
   }
   handleInputChange(e) {
-    const value = e.target.value;
+    // const value = e.target.value;
+    const value = this.input.value;
     this.setState(() => ({ inputValue: value }));
     // this.setState({
     //   inputValue: e.target.value
     // });
   }
   handleButtonClick() {
-    this.setState(prevState => ({
-      list: [...prevState.list, prevState.inputValue],
-      inputValue: ''
-    }));
+    this.setState(
+      prevState => ({
+        list: [...prevState.list, prevState.inputValue],
+        inputValue: ''
+      }),
+      () => {
+        console.log(this.ul.querySelectorAll('div').length);
+      }
+    );
     // this.setState({
     //   list: [...this.state.list, this.state.inputValue],
     //   inputValue: ''
