@@ -37,4 +37,28 @@
     ref的使用
     setState的第二个参数 回调函数 类似nextTick()
 
+    生命周期函数：
+    某一个时刻组件会自动执行的函数
+    1. Initialization 
+    2. Mounting  只有第一次进入的时候
+        componentWillMount 组件即将被挂载到页面的时候自动执行
+        render 
+        componentDidMount 组件挂载到页面之后自动执行
+    3. Updation
+        props变化：
+            componentWillReceiveProps 比较特殊 如果没有props就不会执行，
+                1. 当一个组件从父组件接受了参数props
+                2. 第一次子组件被创建不会执行
+                3. 之前已经有子组件了的话就会被执行
+            shouldComponentUpdate 组件被更新之前自动执行
+            componentWillUpdate 组件被更新之前自动执行 在should返回true后执行
+            render
+            componentDidUpdate
+        states变化：
+            shouldComponentUpdate 组件被更新之前自动执行
+            componentWillUpdate 组件被更新之前自动执行 在should返回true后执行
+            render
+            componentDidUpdate
+    4. Unmount
+        componentWillUnmount 组件将被移除的时候自动执行
 */

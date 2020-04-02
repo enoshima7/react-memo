@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
 // import Test from './Test';
 import './style.css';
+import { http } from './http';
 
 class TodoList extends Component {
   constructor(props) {
@@ -14,7 +15,10 @@ class TodoList extends Component {
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.deleteLi = this.deleteLi.bind(this);
   }
-
+  // 组件即将被挂载到页面的时候自动执行
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
   render() {
     return (
       <Fragment>
@@ -42,6 +46,20 @@ class TodoList extends Component {
         {/* <Test content={this.state.inputValue}/> */}
       </Fragment>
     );
+  }
+  // 组件挂载到页面之后自动执行
+  componentDidMount() {
+    http.get('/data/data.json').then(res => {
+      console.log(res.data);
+      this.setState(() => ({ list: [...res.data] }));
+    });
+  }
+  // 组件被更新之前自动执行
+  shouldComponentUpdate() {
+    console.log('shouldComponentUpdate');
+    return true;
+    // 组件不会更新 后面的流程不会执行
+    // return false;
   }
   getTodoItem() {
     return this.state.list.map((li, index) => {
