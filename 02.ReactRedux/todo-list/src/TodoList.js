@@ -6,7 +6,9 @@ import {
   getInputChangeAction,
   getaddToDoItemAction,
   getdeleteItemAction,
-  initListAction
+  getInitList,
+  initListAction,
+  getTodoList
 } from './store/actionCreators';
 import TodoListUI from './TodoListUI';
 import axios from 'axios';
@@ -33,10 +35,17 @@ class TodoList extends Component {
     );
   }
   componentDidMount() {
-    axios.get('http://localhost:4000/data/data.json').then(res => {
-      store.dispatch(initListAction(res.data));
-      console.log(res.data);
-    });
+    // axios.get('http://localhost:4000/data/data.json').then(res => {
+    //   store.dispatch(initListAction(res.data));
+    //   console.log(res.data);
+    // });
+
+    // const action = getTodoList();
+    // store.dispatch(action)
+
+    const action = getInitList();
+    store.dispatch(action);
+    console.log(action);
   }
   handleInputChange(e) {
     store.dispatch(getInputChangeAction(e.target.value));

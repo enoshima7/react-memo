@@ -1,10 +1,19 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import reducer from './reducer';
+// import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import TodoSaga from './saga';
+
+const sagaMiddleware = createSagaMiddleware();
+
 // import { composeWithDevTools } from 'redux-devtools-extension';
-const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+  : compose;
+// const enhancer = composeEnhancers(applyMiddleware(thunk));
+const enhancer = composeEnhancers(applyMiddleware(sagaMiddleware));
+const store = createStore(reducer, enhancer);
+sagaMiddleware.run(TodoSaga);
 export default store;
 /*
     1. store是唯一的
@@ -16,4 +25,4 @@ export default store;
         store.dispatch
         store.getState
         store.subscribe
-*/ 
+*/
