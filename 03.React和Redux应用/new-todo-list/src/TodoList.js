@@ -21,7 +21,6 @@ const TodoList = props => {
   );
 };
 
-
 const mapStateToProps = state => {
   return {
     inputValue: state.inputValue,
