@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/enoshima7/react-memo/issues"
   },
-  "homepage": "https://github.com/enoshima7/react-memo#readme"
+  "homepage": "https://github.com/enoshima7/react-memo#readme",
+  "devDependencies": {
+    "immutable": "^4.0.0-rc.12"
+  }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
+import { actionCreators } from './store';
 import {
   HeaderWrapper,
   Logo,
@@ -47,22 +48,16 @@ const Header = props => {
 };
 const mapStateToProps = state => {
   return {
-    focused: state.header.focused
+    focused: state.header.get('focused')
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     handleSearchFocus() {
-      const action = {
-        type: 'searchFocus'
-      };
-      dispatch(action);
+      dispatch(actionCreators.searchFocus());
     },
     handleSearchBlur() {
-      const action = {
-        type: 'searchBlur'
-      };
-      dispatch(action);
+      dispatch(actionCreators.searchBlur());
     }
   };
 };
