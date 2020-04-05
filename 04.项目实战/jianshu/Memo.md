@@ -18,3 +18,6 @@
     - index.js中用Provider store
     - 写store 和 reducer 熟悉整个流程
     - 改造成无状态组件
+7. 分离reducer(combineReducers)
+    - 各自版块建立自己的reducer
+    - 在主reducer引入使用combineReducers
