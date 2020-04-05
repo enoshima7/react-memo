@@ -29,6 +29,9 @@ export const NavItem = styled.div`
   line-height: 56px;
   padding: 0 15px;
   font-weight: 17px;
+  .iconfont {
+    font-size: 28px;
+  }
   &.left {
     float: left;
   }
@@ -40,12 +43,29 @@ export const NavItem = styled.div`
     color: #ea6f5a;
   }
 `;
+export const SearchWrapper = styled.div`
+  float: left;
+  position: relative;
+  .iconfont {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 15px;
+    text-align: center;
+    &.focused {
+      background-color: #777;
+      color: #fff;
+    }
+  }
+`;
 export const NavSearch = styled.input.attrs({
   placeholder: '搜索'
 })`
   margin-top: 9px;
   margin-left: 20px;
-  padding: 0 20px;
+  padding: 0 30px 0 30px;
   box-sizing: border-box;
   width: 160px;
   height: 38px;
@@ -54,8 +74,27 @@ export const NavSearch = styled.input.attrs({
   border-radius: 19px;
   background-color: #eee;
   font-size: 14px;
+  color: #666;
+  /* transition: all 0.3s ease; */
+
+  &.slide-enter {
+    transition: all ease 0.2s;
+    width: 160px;
+  }
+  &.slide-enter-active {
+    width: 260px;
+  }
+  &.slide-exit {
+    transition: all ease 0.2s;
+  }
+  &.slide-exit.active {
+    width: 160px;
+  }
   &::placeholder {
     color: #999;
+  }
+  &.focused {
+    width: 200px;
   }
 `;
 export const Addition = styled.div`
@@ -79,5 +118,8 @@ export const Btn = styled.div`
   &.writting {
     color: #fff;
     background-color: #ec6149;
+  }
+  .iconfont {
+    margin-right: 6px;
   }
 `;
