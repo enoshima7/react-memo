@@ -5,9 +5,7 @@ export const HeaderWrapper = styled.div`
   border-bottom: 1px solid #f0f0f0;
   position: relative;
 `;
-export const Logo = styled.a.attrs({
-  href: '/'
-})`
+export const Logo = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -124,6 +122,7 @@ export const Btn = styled.div`
   }
 `;
 export const SearchInfo = styled.div`
+  background-color: #fff;
   position: absolute;
   top: 56px;
   left: 0;
