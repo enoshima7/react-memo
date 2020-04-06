@@ -31,17 +31,4 @@
    - `fromJS`方法
    - 用`get`才能获取属性
    - 用`state.set`改属性 会把以前的和改变的结合 返回一个新的`state`
-   - 用state.merge可以返回多个属性
-10. 使用 redux-immutable
-    - 安装 redux-immutable
-    - 改全局的 reducer
-    - getIn 方法
-11. 搜索弹出烂
-    - 利用绝对定位
-    - 写 getListArea 方法 返回 JSX 对象 当 focued 存在就返回 否则就返回 null
-12. 使用redux-thunk做异步请求操作
-    - 在全局store使用中间件thunk
-    - actionCreators可以返回方法
-    - 在public文件夹做假数据
-    - 接口得到的数据也要变成immutable
 
