@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { actionCreators } from './store';
+import { actionCreators as LoginActionCreators } from '../../pages/login/store';
+
 import { Link } from 'react-router-dom';
 import {
   HeaderWrapper,
@@ -21,7 +23,14 @@ import {
 
 class Header extends PureComponent {
   render() {
-    const { focused, handleSearchFocus, handleSearchBlur, list } = this.props;
+    const {
+      focused,
+      handleSearchFocus,
+      handleSearchBlur,
+      list,
+      login,
+      logOut
+    } = this.props;
     return (
       <HeaderWrapper>
         <Link to="/">
@@ -30,7 +39,15 @@ class Header extends PureComponent {
         <Nav>
           <NavItem className="left active">首页</NavItem>
           <NavItem className="left">下载App</NavItem>
-          <NavItem className="right">登录</NavItem>
+          {login ? (
+            <NavItem className="right" onClick={logOut}>
+              退出
+            </NavItem>
+          ) : (
+            <Link to="/login">
+              <NavItem className="right">登录</NavItem>
+            </Link>
+          )}
           <NavItem className="right">
             <i className="iconfont">&#xe655;</i>
           </NavItem>
@@ -51,9 +68,11 @@ class Header extends PureComponent {
           </SearchWrapper>
         </Nav>
         <Addition>
-          <Btn className="writting">
-            <i className="iconfont">&#xe708;</i>写文章
-          </Btn>
+          <Link to='/write'>
+            <Btn className="writting">
+              <i className="iconfont">&#xe708;</i>写文章
+            </Btn>
+          </Link>
           <Btn className="reg">注册</Btn>
         </Addition>
       </HeaderWrapper>
@@ -117,7 +136,8 @@ const mapStateToProps = state => {
     list: state.getIn(['header', 'list']),
     page: state.getIn(['header', 'page']),
     mouseIn: state.getIn(['header', 'mouseIn']),
-    totalPage: state.getIn(['header', 'totalPage'])
+    totalPage: state.getIn(['header', 'totalPage']),
+    login: state.getIn(['login', 'login'])
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -148,6 +168,9 @@ const mapDispatchToProps = dispatch => {
         originAngle = 0;
       }
       spinIcon.style.transform = `rotate(${originAngle + 360}deg)`;
+    },
+    logOut() {
+      dispatch(LoginActionCreators.logout());
     }
   };
 };

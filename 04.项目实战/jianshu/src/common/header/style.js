@@ -122,6 +122,7 @@ export const Btn = styled.div`
   }
 `;
 export const SearchInfo = styled.div`
+  z-index: 1;
   background-color: #fff;
   position: absolute;
   top: 56px;
